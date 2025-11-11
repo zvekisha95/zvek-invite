@@ -36,7 +36,7 @@ export default async function handler(req, res) {
           </p>
 
           <div style="margin-top: 20px;">
-            <a href="https://groups.google.com/g/YOUR-GROUP-LINK"
+            <a href="https://groups.google.com/g/zvektaphero-testers"
               style="
                 display: inline-block;
                 padding: 12px 16px;
@@ -81,4 +81,3 @@ export default async function handler(req, res) {
     return res.status(500).json({ error: "Failed to send email." });
   }
 }
-
