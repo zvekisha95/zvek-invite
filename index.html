@@ -90,6 +90,13 @@
     box-shadow: 0 0 25px rgba(255,120,20,0.7);
   }
 
+  #statusMessage {
+    margin-top: 12px;
+    font-weight: 600;
+    text-align: center;
+    min-height: 22px;
+  }
+
   .footer {
     margin-top: 25px;
     opacity: 0.7;
@@ -111,15 +118,28 @@
     <input type="email" id="emailInput" placeholder="you@example.com" required />
 
     <button type="submit">Receive Invite</button>
+
+    <!-- ✅ Status message appears here -->
+    <div id="statusMessage"></div>
   </form>
 </div>
 
 <div class="footer">© 2025 Zvekisha Gaming • Elite Tester Program</div>
 
+<!-- ✅ Improved script without alerts -->
 <script>
   document.getElementById("emailForm").addEventListener("submit", async (e) => {
     e.preventDefault();
+
     const email = document.getElementById("emailInput").value;
+    const status = document.getElementById("statusMessage");
+
+    status.innerHTML = ""; // clear old messages
+
+    if (!email) {
+      status.innerHTML = "<span style='color:#ff4444;'>❌ Please enter your email.</span>";
+      return;
+    }
 
     const res = await fetch("/api/sendInvite", {
       method: "POST",
@@ -128,8 +148,16 @@
     });
 
     const data = await res.json();
-    alert(data.message || data.error);
+
+    if (res.ok) {
+      status.innerHTML =
+        "<span style='color:#4cd964;'>✅ Invite successfully sent! Check your inbox.</span>";
+    } else {
+      status.innerHTML =
+        `<span style='color:#ff4444;'>❌ ${data.error || "Something went wrong."}</span>`;
+    }
   });
 </script>
+
 </body>
 </html>
