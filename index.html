@@ -84,10 +84,12 @@
     cursor: pointer;
     transition: 0.25s;
 
-    /* ✅ Центрирање */
     display: block;
     margin-left: auto;
     margin-right: auto;
+
+    /* ✅ Единствената промена */
+    margin-top: 10px;
   }
 
   button:hover {
@@ -124,14 +126,12 @@
 
     <button type="submit">Receive Invite</button>
 
-    <!-- ✅ Status message appears here -->
     <div id="statusMessage"></div>
   </form>
 </div>
 
 <div class="footer">© 2025 Zvekisha Gaming • Elite Tester Program</div>
 
-<!-- ✅ Improved script without alerts -->
 <script>
   document.getElementById("emailForm").addEventListener("submit", async (e) => {
     e.preventDefault();
@@ -139,7 +139,7 @@
     const email = document.getElementById("emailInput").value;
     const status = document.getElementById("statusMessage");
 
-    status.innerHTML = ""; // clear old messages
+    status.innerHTML = "";
 
     if (!email) {
       status.innerHTML = "<span style='color:#ff4444;'>❌ Please enter your email.</span>";
