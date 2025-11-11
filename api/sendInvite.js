@@ -6,10 +6,17 @@ export default async function handler(req, res) {
   try {
     const { email } = req.body;
 
+    // ✅ Basic empty check
     if (!email) {
       return res.status(400).json({ error: "Email required" });
     }
 
+    // ✅ Allow ONLY Gmail emails
+    if (!email.toLowerCase().endsWith("@gmail.com")) {
+      return res.status(400).json({ error: "Only Gmail addresses are allowed." });
+    }
+
+    // ✅ Send Invite
     await sendgrid.send({
       to: email,
       from: "Zvekisha <no-reply@zvekisha.mk>",
@@ -81,3 +88,4 @@ export default async function handler(req, res) {
     return res.status(500).json({ error: "Failed to send email." });
   }
 }
+
