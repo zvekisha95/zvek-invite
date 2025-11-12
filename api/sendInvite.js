@@ -73,6 +73,12 @@ export default async function handler(req, res) {
             </a>
           </div>
 
+          <p style="margin-top: 20px; color: #ffd280;">
+            ⚠️ After opening the Play Store link, make sure to click 
+            <b>"Become a tester"</b> before downloading the game.  
+            Otherwise, Google Play will not allow you to install the testing version.
+          </p>
+
           <p style="margin-top: 25px; opacity: 0.8;">
             If you run into issues, reply to this email anytime.  
             Welcome aboard — the Zvekisha universe is proud to have you! 🔥
@@ -88,4 +94,3 @@ export default async function handler(req, res) {
     return res.status(500).json({ error: "Failed to send email." });
   }
 }
-
